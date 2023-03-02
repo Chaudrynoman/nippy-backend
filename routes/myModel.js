@@ -5,7 +5,7 @@ const router = express.Router();
 const myModelController = require('../controllers/myController');
 
 router.post(
-  '/',
+  '/document',
     body('jsonData').notEmpty().custom((value, { req }) => {
       if (!Array.isArray(value)) {
         throw new Error('jsonData must be an array');
@@ -29,14 +29,14 @@ router.post(
 );
 
 router.get(
-  '/',
-  query('fileName').notEmpty().isString(),
+  '/document/:fileName',
+  param('fileName').notEmpty().isString(),
   myModelController.getDocument
 );
 
 router.put(
-  '/',
-  query('fileName').notEmpty().isString(),
+  '/document/:fileName',
+  param('fileName').notEmpty().isString(),
   body('jsonData').notEmpty().custom((value, { req }) => {
     if (typeof value !== 'object' || Array.isArray(value)) {
       throw new Error('jsonData must be an object');

@@ -43,9 +43,10 @@ exports.insertDocument = async (req, res) => {
 };
 exports.getDocument = async (req, res) => {
   try {
-    const documentName = req.query.fileName;
+    const documentName = req.params.fileName;
+    const newName = documentName.split('.')[0];
     console.log("dumentName", documentName)
-    const document = await MyModel.findOne({fileName:documentName});
+    const document = await MyModel.findOne({fileName:newName});
     if (!document) {
       return res.status(404).json({ success: false, message: "Document not found" });
     }
@@ -58,7 +59,7 @@ exports.getDocument = async (req, res) => {
 
 exports.updateDocument = async (req, res) => {
   try {
-    const documentName = req.query.fileName;
+    const documentName = req.param.fileName;
     console.log("dumentName", documentName)
     const {jsonData } = req.body;
     const errors = validationResult(req);
