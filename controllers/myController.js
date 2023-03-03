@@ -59,7 +59,7 @@ exports.getDocument = async (req, res) => {
 
 exports.updateDocument = async (req, res) => {
   try {
-    const documentName = req.param.fileName;
+    const documentName = req.params.fileName;
     console.log("dumentName", documentName)
     const {jsonData } = req.body;
     const errors = validationResult(req);

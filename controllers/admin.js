@@ -7,16 +7,6 @@ const err= new Error();
 
 exports.login = async(req, res, next) => {
     try{
-        // const password="admin@123"
-        // const hashedPassword=await bcrypt.hash(password, 12);
-        // const newUser = new userModel({
-        //   email: "admin@gmail.com",
-        //   password: hashedPassword,
-        //   name: "admin",
-        //   role: "admin",
-        //   date: Date.now()
-        // });
-        // newUser.save();
         const {email,password}=req.body;
         const errors =validationResult(req);
         if (!errors.isEmpty()) {
@@ -54,29 +44,55 @@ exports.login = async(req, res, next) => {
   };
   exports.getCategories = async(req, res, next) => {
     try{
-        const current_document = await categoryModel.find({}, { type: 1, total: 1, booked: 1, remaing:1, open:1, module:1 }).lean();
-        const categories = {
-            m1: {videos: {}, toys: {}, games: {}, music: {}},
-            m2: {videos: {}, toys: {}, games: {}, music: {}},
-            m3: {videos: {}, toys: {}, games: {}, music: {}},
-            m4: {videos: {}, toys: {}, games: {}, music: {}},
-            m5: {videos: {}, toys: {}, games: {}, music: {}}
-          };
-          
-          for (const item of current_document) {
-            const item_type = item['type'];
-            const item_module = item['module'];
-            
-            if (categories[item_module]) {
-              categories[item_module][item_type] = {
-                total: item['total'],
-                booked: item['booked'],
-                remaing: item['remaing'],
-                open: item['open']
-              }
-            }
-          }          
-        res.status(200).json({Suceess:true,Message:"Sucessfully Done!",categories:categories});
+        const categories = await categoryModel.find({}, { type: 1, total: 1, booked: 1, remaing:1, open:1, module:1 }).lean();
+        let grouped = {};
+
+    for (let category of categories) {
+      let module = category['module'];
+      let category_type = category['type'];
+      let total = category['total'];
+      let booked = category['booked'];
+      let open_ = category['open'];
+      let remaining = total - booked;
+
+      if (!(module in grouped)) {
+        grouped[module] = {};
+      }
+
+      if (!(category_type in grouped[module])) {
+        grouped[module][category_type] = {
+          'total': 0,
+          'booked': 0,
+          'open': 0,
+          'remaining': 0,
+        };
+      }
+
+      grouped[module][category_type]['total'] += total;
+      grouped[module][category_type]['booked'] += booked;
+      grouped[module][category_type]['open'] += open_;
+      grouped[module][category_type]['remaining'] += remaining;
+    }
+
+    let result = [];
+
+    for (let module in grouped) {
+      let types = grouped[module];
+      let module_data = { 'module': module };
+
+      for (let category_type in types) {
+        let data = types[category_type];
+        module_data[category_type] = {
+          'total': data['total'],
+          'booked': data['booked'],
+          'remaining': data['remaining'],
+          'open': data['open'],
+        };
+      }
+
+      result.push(module_data);
+    }
+        res.status(200).json({Suceess:true,Message:"Sucessfully Done!",categories: result});
         return;
     }
     catch(e){

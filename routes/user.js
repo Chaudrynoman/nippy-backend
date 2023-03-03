@@ -11,9 +11,12 @@ router.put('/user/categories',[
     query('type')
       .notEmpty()
       .withMessage('Type is required'),
-    query('number_seat')
-      .isInt()
-      .withMessage('Number of Seat must be an integer'),
+    query('wallet_address')
+    .notEmpty()
+      .withMessage('wallet_address must be an required'),
+      query('transaction_hash')
+      .notEmpty()
+      .withMessage('transaction_hash must be required'),
   ], controller.updateCategory);
 // router.post('/add',
 // [
