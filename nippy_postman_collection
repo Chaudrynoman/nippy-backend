@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "22f119c7-12ae-4eb2-a6f1-50e9f6ec3548",
+		"name": "nippy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/admin/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"total\": 20,\r\n    \"booked\": 15,\r\n    \"remaing\": \"15\",\r\n    \"open\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/categories?type=toys&module=m1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "toys"
+						},
+						{
+							"key": "module",
+							"value": "m1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/admin/categories?type=videos&module=m1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"{\r",
+							"    \r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/categories?type=toys&module=m1&number_seat=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "toys"
+						},
+						{
+							"key": "module",
+							"value": "m1"
+						},
+						{
+							"key": "number_seat",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/admin/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"admin@gmail.com\",\r\n  \"password\": \"admin@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/document/12.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"document",
+						"12.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"jsonData\": {\r\n    \"name\": \"Nippy #12\",\r\n    \"description\": \"A curious explorer full of emotions and a magnet to mischief. A cat of 3,222 personalities, rewards owners, and is building a children's franchise. This NFT will earn passive rewards for its' holder through profit-sharing connected to franchise products.\",\r\n    \"external_url\": \"https://www.frensville.co\",\r\n    \"image\": \"https://meetnippy.mypinata.cloud/ipfs/QmNp8JeyTz6rN6ftnhcM5gpZEaePoXY4RWkJXQDeEhouFY/13.webp\",\r\n    \"attributes\": [\r\n        {\r\n            \"trait_type\": \"Background\",\r\n            \"value\": \"Medium Orange\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Character\",\r\n            \"value\": \"Sam\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Hand Sign\",\r\n            \"value\": \"Thumbs\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Neck\",\r\n            \"value\": \"Baby Blue Necktie\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Eyes\",\r\n            \"value\": \"Suspicious Looking Right\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Mouth\",\r\n            \"value\": \"Disgusted\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Head\",\r\n            \"value\": \"Mouse Under Hat\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Holding\",\r\n            \"value\": \"Blue Sneaker\"\r\n        },\r\n        {\r\n            \"trait_type\": \"IP License\",\r\n            \"value\": \"Interior\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Theme\",\r\n            \"value\": \"Collaboration\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Books\",\r\n            \"value\": 20,\r\n            \"display_type\": \"number\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Videos\",\r\n            \"value\": 0,\r\n            \"display_type\": \"number\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Music\",\r\n            \"value\": 0,\r\n            \"display_type\": \"number\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Toys\",\r\n            \"value\": 0,\r\n            \"display_type\": \"number\"\r\n        },\r\n        {\r\n            \"trait_type\": \"Games\",\r\n            \"value\": 0,\r\n            \"display_type\": \"number\"\r\n        }\r\n    ]\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/document/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"document",
+						"12"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
