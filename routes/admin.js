@@ -3,6 +3,8 @@ const { body, query } = require('express-validator')
 const router = express.Router();
 const controller = require('../controllers/admin');
 const isAuth = require('../middleware/isAuth')
+const { checkRole } = require('../middleware/check-role');
+
 
 router.post('/admin/login',
 [
@@ -14,7 +16,7 @@ router.post('/admin/login',
       .isLength({ min: 5 })
       .trim(),
 ], controller.login);
-router.get('/admin/categories', controller.getCategories);
+router.get('/admin/categories', isAuth, checkRole('admin'), controller.getCategories);
 router.put('/admin/categories',[
     query('module')
       .notEmpty()
@@ -43,7 +45,7 @@ router.put('/admin/categories',[
         }
         return true;
       }),
-  ], controller.updateCategory);
+  ], isAuth, checkRole('admin'), controller.updateCategory);
 // router.post('/add',
 // [
    

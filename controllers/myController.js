@@ -11,7 +11,6 @@ exports.insertDocument = async (req, res) => {
     }
     await jsonData.forEach(async element => {
       const nameNumber = Number(element.name.match(/Nippy #(\d+)/)[1]);
-      console.log("nameNumber", nameNumber);
       const newData = {
         "name": element.name,
         "description": element.description,
@@ -19,7 +18,6 @@ exports.insertDocument = async (req, res) => {
         "image": element.image,
         "attributes": []
       };
-      console.log("newData", newData);
       for (let i = 0; i < 15; i++) {
         newData.attributes.push({
           "trait_type": element[`attributes/${i}/trait_type`],
@@ -27,12 +25,9 @@ exports.insertDocument = async (req, res) => {
         });
           if (i >= 10) {
             newData.attributes[i].display_type = "number";
-            console.log("here");
-            console.log("newData.attributes[i]",newData.attributes[i]);
           }
       }
       const myModel = new MyModel({ fileName:nameNumber, jsonData:newData });
-      console.log("myModel",myModel);
       await myModel.save();
       });
     res.status(200).json({ success: true, message: "Successfully added document", data: { } });
@@ -45,7 +40,6 @@ exports.getDocument = async (req, res) => {
   try {
     const documentName = req.params.fileName;
     const newName = documentName.split('.')[0];
-    console.log("dumentName", documentName)
     const document = await MyModel.findOne({fileName:newName});
     if (!document) {
       return res.status(404).json({ success: false, message: "Document not found" });
@@ -60,7 +54,6 @@ exports.getDocument = async (req, res) => {
 exports.updateDocument = async (req, res) => {
   try {
     const documentName = req.params.fileName;
-    console.log("dumentName", documentName)
     const {jsonData } = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
