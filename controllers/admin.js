@@ -44,7 +44,8 @@ exports.login = async(req, res, next) => {
   };
   exports.getCategories = async(req, res, next) => {
     try{
-        const categories = await categoryModel.find({}, { type: 1, total: 1, booked: 1, remaing:1, open:1, module:1 }).lean();
+        const categories = await categoryModel.find({}, { type: 1, total: 1, booked: 1, remaing:1, open:1, module:1 }).sort({ module: 1 })
+        .lean();
         let grouped = {};
 
     for (let category of categories) {
