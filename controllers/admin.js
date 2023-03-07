@@ -138,7 +138,7 @@ exports.login = async(req, res, next) => {
 //     try{
 //         for(let i=1;i<6;i++){
 //             const newUser = new categoryModel({
-//                 type: "games",
+//                 type: "videos",
 //                 total: 30,
 //                 booked: 15,
 //                 remaing: 15,

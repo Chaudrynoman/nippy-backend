@@ -9,18 +9,42 @@ const categorySchema = new mongoos.Schema({
     total:{
         type:Number,
         required:true,
+        validate: {
+            validator: function(value) {
+              return value >= 0;
+            },
+            message: 'Total seats must be an unsigned number'
+          }
     },
     booked:{
         type:Number,
         required:true,
+        validate: {
+            validator: function(value) {
+              return value >= 0;
+            },
+            message: 'Booked seats must be an unsigned number'
+          }
     },
     remaing:{
         type:Number,
-        required:true
+        required:true,
+        validate: {
+            validator: function(value) {
+              return value >= 0;
+            },
+            message: 'Remaining seats must be an unsigned number'
+          }
     },
     open:{
         type:Number,
         required:true,
+        validate: {
+            validator: function(value) {
+              return value >= 0;
+            },
+            message: 'Open seats must be an unsigned number'
+          }
     },
     module:{
         type:String,

@@ -18,10 +18,6 @@ router.put('/user/categories',[
       .notEmpty()
       .withMessage('transaction_hash must be required'),
   ], controller.updateCategory);
-// router.post('/add',
-// [
-   
-// ], controller.addData);
 
 
 module.exports = router;
